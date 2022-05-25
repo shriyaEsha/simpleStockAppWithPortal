@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Simplified Stock-Ecosystem application</title>
+    <!-- Stock uses React Portals to render React components -->
+    <div id="portal-root"></div>
+    
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script type="text/javascript" src="scripts/ccemodal.bundle.js"></script>
+    <script type="text/javascript" src="http://requirejs.org/docs/release/2.3.2/minified/require.js"></script>
+</head>
+<body>
+    <script>
+        // Stock uses requirejs for functional components 
+        requirejs([], function() {
+            var script = document.createElement('script');
+            script.src = '<insert CDN URL here>';
+            script.onload = function () {
+                console.log('CCE!');
+            };
+            document.head.appendChild(script);
+        });
+    </script>
+<div id="portal"></div>
+</body>
