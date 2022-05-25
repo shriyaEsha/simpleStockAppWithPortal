@@ -5,6 +5,7 @@
     <!-- Stock uses React Portals to render React components -->
     <div id="portal-root"></div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
     <script type="text/javascript" src="scripts/ccemodal.bundle.js"></script>
@@ -14,12 +15,25 @@
     <script>
         // Stock uses requirejs for functional components 
         requirejs([], function() {
-            var script = document.createElement('script');
-            script.src = '<insert CDN URL here>';
-            script.onload = function () {
-                console.log('CCE!');
-            };
-            document.head.appendChild(script);
+            function importCCE() {
+                var script = document.createElement('script');
+                script.src = 'https://sdk-1p-dev.cc-embed.adobe.com/v1/CCEverywhere.js';
+                script.onload = function () {
+                    console.log('CCE!');
+                    // require CCE here
+                    requirejs(['CCEverywhere'], function(CCEverywhere){
+                        console.log('CCEverywhere: ', CCEverywhere);
+                    });
+                };
+                document.head.appendChild(script);
+            }
+
+            // add  button
+            var btn = document.createElement('button');
+            btn.id = 'importCCE';
+            btn.innerText = 'Import CCE using requirejs!';
+            document.body.appendChild(btn);
+            $('#importCCE').on('click', importCCE);
         });
     </script>
 <div id="portal"></div>
